@@ -1,40 +1,147 @@
-.App {
+.game{
+  position: absolute;
+  
+  height: 100%;
+  width: 100%;
+  bottom: 0px;
+  outline: 0px;
+  margin:0;
+  /*pointer-events: none;*/
+  z-index: -1;
+  overflow: hidden;
+}
+  
+.page{
+  height: 100%;
+  width: 100%;
+  /*z-index: -1;*/
+  overflow: hidden;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:wght@400&display=swap');
+
+
+.score{
+  
+  position: absolute;
+  /*border: 5px solid red;*/
+  display: inline-block; 
   text-align: center;
+  /*top: 10px;*/
+  left: 50%;
+  width: 300px;
+  /*height: 50px;*/
+  font-size: 80px;
+  margin-left: -150px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  color: #8f8f8e;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #45201c;
+  /*overflow: hidden;*/
+  /*pointer-events: none;*/
+  z-index:3;
+  opacity:0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
+.description{
+  
+  position: absolute;
+  /*line-height: 97%;*/
 
-.inferno-logo {
-  background: #fff;
-  width: 6rem;
-  height: 6rem;
-  padding: 2rem;
-  border-radius: 2rem;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /*border: 5px solid red;*/
+  display: inline-block; 
+  text-align: center;
+  top: 10%;
+  left: 50%;
+  width: 300px;
+  /*height: 50px;*/
+  font-size: 16px;
+  margin-left: -150px;
+  font-family: 'Roboto', sans-serif;
+  /*font-weight: 00;*/
+  /*color: #45201c;*/
   color: white;
+  /*text-shadow: 0px 0px 20px white;*/
+ /* -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #8f8f8e;*/
+
+  /*overflow: hidden;*/
+  /*pointer-events: none;*/
+  z-index:3;
 }
 
-.App-link {
-  color: #fff;
+
+.start{
+
+  /*touch-action: auto;*/
+ /* display: block;
+  overflow: hidden;*/
+  /*pointer-events: none;*/
+  background: #4a76a8;
+  border: 1px solid  #4a76a8;
+  border-radius: 20px;
+  position: relative;
+  text-align: center;
+  /*top: 25%;*/
+  /*-webkit-transform:translate(50px, 50px);*/
+  left: 50%;
+  
+  margin-top: 400px;
+  /*transform: translateY(-50%);*/
+  width: 200px;
+  height: 50px;
+  
+  font-size: 25px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  color:#edeef0;
+  animation: pulse 1s infinite;
+  /*animation: .5s linear 1s infinite alternate slidein;*/
+  z-index:40;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes pulse {
+  0% {
+     transform:translateX(-50%) scale(.9) ;
+     /*transform: ;*/
   }
-  to {
-    transform: rotate(360deg);
+  50%{
+   transform: translateX(-50%) scale(1) ;
+    /*transform: translateX(-50%);*/
+    
   }
+  100% {
+
+     transform: translateX(-50%) scale(.9);
+     /*transform: translateX(-50%);*/
+   }
+}
+
+
+.pointer{
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  margin-top: 550px;
+  margin-left: 200px;
+  /*transform: rotate(160deg);*/
+  animation: touch 1s infinite;
+  transform: rotate(160deg);
+  z-index: 4;
+}
+
+@keyframes touch {
+  0% {
+     transform: translateY(-50%) rotate(160deg);
+     opacity: 0;
+     /*transform: ;*/
+  }
+  70%{
+   transform:  rotate(160deg);
+   opacity:100;
+    /*transform: translateX(-50%);*/
+    
+  }
+
 }
