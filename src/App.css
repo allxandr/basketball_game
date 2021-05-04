@@ -78,9 +78,9 @@
  /* display: block;
   overflow: hidden;*/
   /*pointer-events: none;*/
-  background: #4a76a8;
-  border: 1px solid  #4a76a8;
-  border-radius: 20px;
+  background: #3f6591ea;
+  border: 1px solid #3f6591ea;
+  border-radius: 25px;
   position: relative;
   text-align: center;
   /*top: 25%;*/
@@ -100,6 +100,21 @@
   /*animation: .5s linear 1s infinite alternate slidein;*/
   z-index:40;
 }
+.page__button{
+  position: absolute;
+  margin-left: 5%;
+  margin-top: 3%;
+  z-index: 3;
+}
+.page__button-pause{
+  width: 2.3em;
+  padding-bottom: 2.8%;
+  margin-right: 0.3em;
+}
+.page__button-mute{
+  width: 3em;
+}
+
 
 @keyframes pulse {
   0% {
@@ -121,24 +136,24 @@
 
 .pointer{
   position: absolute;
-  width: 150px;
-  height: 150px;
-  margin-top: 550px;
-  margin-left: 200px;
+  /* width: 150px; */
+  height: 70px;
+  margin-top: 450px;
+  margin-left: 75%;
   /*transform: rotate(160deg);*/
-  animation: touch 1s infinite;
-  transform: rotate(160deg);
-  z-index: 4;
+  animation: touch 2s infinite;
+  transform: rotate(-90deg);
+  z-index: -4;
 }
 
 @keyframes touch {
   0% {
-     transform: translateY(-50%) rotate(160deg);
+     transform: translateY(170%) rotate(-90deg);
      opacity: 0;
      /*transform: ;*/
   }
   70%{
-   transform:  rotate(160deg);
+   transform:  rotate(-90deg);
    opacity:100;
     /*transform: translateX(-50%);*/
     

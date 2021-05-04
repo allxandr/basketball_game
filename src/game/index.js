@@ -167,13 +167,15 @@ class Basket{
 
 class GameScene {
 
-	constructor(canvas, onFinish, onScore){
+	constructor(canvas, onFinish, onScore, onBallTouch, onBallMove, onBallRelease){
 		window.CANNON = CANNON;
 		this.onFinish = onFinish;
 		this.onScore = onScore;
 		this._engine = new Engine(canvas,false, {audioEngine: true , doNotHandleContextLost: true}, true);
 		this._scene = new Scene(this._engine);
-
+		this.onBallRelease = onBallRelease;
+		this.onBallTouch = onBallTouch;
+		this.onBallMove = onBallMove;
 		this.fd = false
 		this.score = 0;
 		this.start_game = false;
@@ -417,10 +419,12 @@ class GameScene {
         pointerDragBehavior.onDragStartObservable.add((event)=>{
         	// console.log(event)
             this.start_position = new Vector3(this.ball.position.x,this.ball.position.y,this.ball.position.z)
+            this.onBallTouch();
             // this.start_position.copyFrom();            
             // if (this.throw_sound==null) this.addSounds();
         })
         pointerDragBehavior.onDragObservable.add((event)=>{
+        	this.onBallMove();
         	// console.log(event)
         	// const v = Date.now();
         	// if (this.last_time!==null) this.last_delta_time =  v - this.last_time
@@ -435,6 +439,7 @@ class GameScene {
             
         })
         pointerDragBehavior.onDragEndObservable.add((event)=>{
+        	this.onBallRelease();
         	// console.log('f')
         	if (!this.start_game) return;
      		// console.log(event)

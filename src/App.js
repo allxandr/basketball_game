@@ -10,7 +10,8 @@ class App extends Component {
     super();
     this.state = {
       score: 0,
-      muted: false
+      muted: false,
+      paused: false
     };
     this.url = new URLSearchParams(window.location.search);
 
@@ -49,7 +50,10 @@ class App extends Component {
             this.setState({
               score: this.state.score + 1,
             });
-          }
+          },
+          this.onBallTouch,
+          this.onBallMove,
+          this.onBallRelease
           );
     this.scene.loop();
     window.addEventListener("resize",() =>{this.scene._engine.resize(); });
@@ -74,7 +78,31 @@ class App extends Component {
     this.initGame();
   }
 
+  // Functions Prototypes
 
+  onBallTouch(){
+    console.log('touch');
+    //called when player touches the ball
+  }
+
+  onBallRelease(){
+    console.log('release');
+    //called when player released the ball
+
+  }
+  onBallMove(){
+    console.log('move');
+    //called when player moving the ball using finger
+
+  }
+
+  mute(){
+    // function to mute or unmute (check for current state )
+  }
+
+  pause(){
+    // function to make a pause (check for current state)
+  }
 
 
   render() {
@@ -82,20 +110,31 @@ class App extends Component {
     return (
       <div className="page">  
       
-      <h1 id = "score" className = "score">{this.state.score}</h1>
-      <h1 id = "descr" className = "description">Используй свой палец, чтобы забросить мяч в корзину</h1>
-      <img id = "pointer" className = "pointer" src="/svgs/decree.png"/>
+      <h1 id = "score" ref={scoreLabel => this.scoreLabel = scoreLabel} className = "score">{this.state.score}</h1>
+        <h1 id="descr" ref={description => this.description = description} className="description">Используй свой палец, чтобы забросить мяч в корзину</h1>
+        <div class="page__button">
+          <a src="#">
+            <img class="page__button-pause" src="/svgs/pause.png" />
+            </a>
+            <a src="#">
+            <img class="page__button-mute" src="/svgs/mute2.png" />
+            <img class="page__button-mute" src="/svgs/mute.png" />
+          </a>
+        </div>
+        
+      <img id = "pointer" className = "pointer" ref={pointerAnimation => this.pointerAnimation = pointerAnimation} src="/svgs/decree.png"/>
 
       <canvas
           id="game" 
           className="game"
           pointer-events = "none"
           ref={canvas => this.canvas = canvas}/>
-      <button id = "go" className = "start" onClick={()=>{
+      <button id = "go" id="pointer" className = "start"  ref={goButton => this.goButton = goButton} onClick={()=>{
                   this.scene.gameStart();
-                  document.getElementById("go").style.opacity = 0;
-                  document.getElementById("descr").style.opacity = 0;
-                   document.getElementById("score").style.opacity = 100;
+                  this.goButton.style.opacity = 0;
+                  this.description.style.opacity = 0;
+                  this.scoreLabel.style.opacity = 100;
+                  this.pointerAnimation.style.zIndex = 4;
                   }}>Поехали!</button>
       </div>
     );
